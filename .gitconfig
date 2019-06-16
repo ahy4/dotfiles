@@ -1,0 +1,26 @@
+[core]
+  editor = nvim
+
+[alias]
+  tr = log --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset' # show log tree
+  tra = log --all --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset' # show log tree
+  l = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat # show change file and line counts
+  a = !git add -A && git status -s # add all and show git status
+  c = commit # commit
+  alias = !git config --get-regexp '^alias\\.' | sed 's/alias\\.\\([^ ]*\\) \\(.*\\)/\\1\\\t => \\2/' | sort # show aliases
+  s = status # git status
+  n = !git add -A && git now # add and git now
+  t = !tig # open tig
+  ps = push # push
+  pso = !echo "git push -u origin `git rev-parse --abbrev-ref HEAD 2> /dev/null`" && git push -u origin `git rev-parse --abbrev-ref HEAD 2> /dev/null` # git push --set-upstream origin {{new-remote-branch}}
+  pl = pull # pull
+  ch = checkout # checkout
+  b = branch # branch
+  d = diff
+
+[push]
+  default = simple
+[user]
+  mail = mrfool38@gmail.com
+  name = ahyahya1
+  email = mrfool38@gmail.com
