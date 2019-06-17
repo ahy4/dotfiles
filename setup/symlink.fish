@@ -16,10 +16,12 @@ ln -s (pwd)/.bashrc $HOME/.bashrc
 mkdir -p $HOME/.config/fish/
 ln -s (pwd)/fish/bash-setup.sh $HOME/.config/fish/bash-setup.sh
 ln -s (pwd)/fish/fish_variables $HOME/.config/fish/fish_variables
-# omf
-curl -L https://get.oh-my.fish | fish
-mkdir -p $HOME/.config/omf/
-ln -s (pwd)/omf/init.fish $HOME/.config/omf/init.fish
+mkdir -p $HOME/.config/fish/functions/
+ln -s (pwd)/fish/functions/fish_prompt.fish $HOME/.config/fish/functions/fish_prompt.fish
+ln -s (pwd)/fish/functions/fish_user_key_bindings.fish $HOME/.config/fish/functions/fish_user_key_bindings.fish
+# fundle
+mkdir -p ~/.config/fish/functions
+wget https://git.io/fundle -O ~/.config/fish/functions/fundle.fish
 
 ### NeoVim
 mkdir -p ~/.config/nvim
