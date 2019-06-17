@@ -1,7 +1,9 @@
 #!/bin/fish
 
 # alias
-alias pbcopy='xsel --clipboard --input'
+if ! type pbcopy ^/dev/null >/dev/null
+  alias pbcopy='xsel --clipboard --input'
+end
 alias g='git'
 alias docker='sudo docker'
 alias vim='nvim'

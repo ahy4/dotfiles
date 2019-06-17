@@ -24,37 +24,42 @@ XTerm*selectToClipboard: true
 *pointerColorBackground:          #2B2C2B
 *pointerColorForeground:          #16A085
 
-!! black dark/light
-*color0:                          #222D31
-*color8:                          #585858
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
 
-!! red dark/light
-*color1:                          #ab4642
-*color9:                          #ab4642
+! black
+*.color0:       #282a2e
+*.color8:       #373b41
 
-!! green dark/light
-*color2:                          #7E807E
-*color10:                         #8D8F8D
+! red
+*.color1:       #a54242
+*.color9:       #cc6666
 
-!! yellow dark/light
-*color3:                          #f7ca88
-*color11:                         #f7ca88
+! green
+*.color2:       #8c9440
+*.color10:      #b5bd68
 
-!! blue dark/light
-*color4:                          #5f819d
-*color12:                         #81a2be
+! yellow
+*.color3:       #de935f
+*.color11:      #f0c674
 
-!! magenta dark/light
-*color5:                          #ba8baf
-*color13:                         #ba8baf
+! blue
+*.color4:       #5f819d
+*.color12:      #81a2be
 
-!! cyan dark/light
-*color6:                          #1ABB9B
-*color14:                         #1ABB9B
+! magenta
+*.color5:       #85678f
+*.color13:      #b294bb
 
-!! white dark/light
-*color15:                         #d8d8d8
-*color7:                          #222D31
+! cyan
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+
+! white
+*.color7:       #707880
+*.color15:      #c5c8c6
 
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0

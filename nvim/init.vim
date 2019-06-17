@@ -37,42 +37,6 @@ if dein#check_install()
 endif
 
 "*****************************************************************************
-"" Plugin settings
-"*****************************************************************************
-
-"*** fzf ***
-
-" files
-nnoremap <Leader>ff :FZF<CR>
-
-" ag search (needs install)
-nnoremap <Leader>fa :Ag<CR>
-
-" ripgrep search (needs install)
-nnoremap <Leader>fr :Rg<CR>
-
-" buffer and v:oldfiles
-nnoremap <Leader>fb :History<CR>
-
-" command list
-nnoremap <Leader>fc :Commands<CR>
-
-" normal mode keybindings
-nnoremap <Leader>fm :Maps<CR>
-
-" ファイル一覧を出すときにプレビュー表示
-command! -bang -nargs=? -complete=dir Files
-\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-" ripgrepのときプレビュー表示
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-
-"*****************************************************************************
 "" Basic Setup
 "*****************************************************************************
 "" Encoding
@@ -127,6 +91,42 @@ endif
 
 "" 矩形選択のとき、文字が存在しない場所も選択可能にする
 set virtualedit=block
+
+"*****************************************************************************
+"" Plugin settings
+"*****************************************************************************
+
+"*** fzf ***
+
+" files
+nnoremap <Leader>ff :FZF<CR>
+
+" ag search (needs install)
+nnoremap <Leader>fa :Ag<CR>
+
+" ripgrep search (needs install)
+nnoremap <Leader>fr :Rg<CR>
+
+" buffer and v:oldfiles
+nnoremap <Leader>fb :History<CR>
+
+" command list
+nnoremap <Leader>fc :Commands<CR>
+
+" normal mode keybindings
+nnoremap <Leader>fm :Maps<CR>
+
+" ファイル一覧を出すときにプレビュー表示
+command! -bang -nargs=? -complete=dir Files
+\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+" ripgrepのときプレビュー表示
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
 "*****************************************************************************
 "" Visual Settings
