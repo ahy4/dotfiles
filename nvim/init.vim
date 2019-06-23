@@ -18,6 +18,10 @@ if dein#load_state('~/.cache/dein')
   call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 }) 
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
+  " Git
+  call dein#add('airblade/vim-gitgutter') ":G*** commands
+  call dein#add('tpope/vim-fugitive')
+
   " Typescript
   call dein#add('neoclide/coc.nvim', { 'merge': 0, 'build': './install.sh nightly' })
   " and :CocInstall coc-tsserver coc-tslint-plugin
@@ -116,17 +120,10 @@ nnoremap <Leader>fc :Commands<CR>
 " normal mode keybindings
 nnoremap <Leader>fm :Maps<CR>
 
-" ファイル一覧を出すときにプレビュー表示
-command! -bang -nargs=? -complete=dir Files
-\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+"*** Git Gutter***
 
-" ripgrepのときプレビュー表示
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+" Refresh on Save
+nnoremap <Leader>fs :w<CR>:GitGutter<CR>:echo "saved"<CR>
 
 "*****************************************************************************
 "" Visual Settings
@@ -195,7 +192,7 @@ noremap <Leader>sh :<C-u>split<CR>
 noremap <Leader>sv :<C-u>vsplit<CR>
 
 "" Vimrc 編集用
-nnoremap <Leader>ve :e ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>ve :e ~/workspace/dotfiles/nvim/init.vim<CR>
 nnoremap <Leader>vr :source ~/.config/nvim/init.vim<CR>
 
 "" Tabs
@@ -203,10 +200,9 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 nnoremap <silent> <S-t> :tabnew<CR>
 
-"" Save
-nnoremap <Leader>fs :w<CR>
 nnoremap <Leader>qq :q<CR>
-""
+
+"" Force fxxk
 nnoremap <Leader>fSS :w !sudo -S tee > /dev/null %<CR>
 
 "" Set working directory
