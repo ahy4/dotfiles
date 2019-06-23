@@ -17,6 +17,7 @@ fish_vi_key_bindings
 
 ### plugins
 fundle plugin 'jethrokuan/z'
+fundle plugin 'jethrokuan/fzf'
 fundle plugin 'tuvistavie/fish-completion-helpers'
 fundle plugin 'tuvistavie/fundle' --path 'completions'
 fundle init
