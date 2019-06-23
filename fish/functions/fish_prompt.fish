@@ -1,11 +1,12 @@
 ### fish prompt
 
 set fish_prompt_pwd_dir_length 1
+set fish_color_cwd bfcd7e
 
 # Git prompt
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showupstream 'yes'
-set __fish_git_prompt_color_branch bfcd7e
+set __fish_git_prompt_color_branch 888888
 set __fish_git_prompt_color_dirtystate FCBC47
 set __fish_git_prompt_color_stagedstate green
 set __fish_git_prompt_color_upstream cyan
@@ -45,26 +46,23 @@ function fish_prompt
   printf '%s' (prompt_pwd)
 
   set_color normal
-  printf '%s ' (__fish_git_prompt | sed 's/^ ./ /' | sed 's/.$//')
+  printf ' %s' (__fish_git_prompt \
+    | sed 's/[(]//' \
+    | sed 's/[)]//' \
+    | sed 's/ //g' \
+    | sed 's/$/ /g' \
+    | sed 's/^ $//g'
+  )
 
-	printf '['
 	switch $fish_bind_mode
 		case default
-			set_color --bold red
-			printf 'n'
+      _print_in_color '<< ' (_prompt_color_for_status $last_status)
 		case insert
-			set_color --bold green
-			printf 'i'
+      _print_in_color '>> ' (_prompt_color_for_status $last_status)
 		case visual
-			set_color --bold magenta
-			printf 'v'
+      _print_in_color '<< ' (_prompt_color_for_status $last_status)
 	end
-	set_color normal
-	printf '] '
 
-  set_color -o yellow
-  _print_in_color '$ ' (_prompt_color_for_status $last_status)
-  set_color normal
 end
 
 function fish_right_prompt
