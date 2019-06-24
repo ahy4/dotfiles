@@ -14,6 +14,7 @@ ln -s (pwd)/.tmux.conf $HOME/.tmux.conf
 ### Shell Config
 ln -s (pwd)/.bashrc $HOME/.bashrc
 mkdir -p $HOME/.config/fish/
+ln -s (pwd)/fish/config.fish $HOME/.config/fish/config.fish
 ln -s (pwd)/fish/bash-setup.sh $HOME/.config/fish/bash-setup.sh
 ln -s (pwd)/fish/fish_variables $HOME/.config/fish/fish_variables
 mkdir -p $HOME/.config/fish/functions/
@@ -33,7 +34,7 @@ ln -s (pwd)/nvim/init.vim $HOME/.config/nvim/init.vim
 # Tested on Arch Linux
 ###
 
-if [ (expr substr (uname -s) 1 5) = 'Linux' ]
+if [ "(expr substr (uname -s) 1 5)" = 'Linux' ]
   ### .Xresources for xterm, etc...
   ln -s (pwd)/.Xresources $HOME/.Xresources
   # to reload: xrdb ~/.Xresources

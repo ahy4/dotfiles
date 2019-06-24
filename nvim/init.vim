@@ -163,8 +163,14 @@ nnoremap <silent> <leader>sh :terminal<CR>
 
 """ Status Line
 " https://shapeshed.com/vim-statuslines/
+let g:last_update_timestamp_git_branch = 0
+let g:last_update_git_branch_name = ''
 function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  if strftime('%s') > g:last_update_timestamp_git_branch + 10 " clear cache by 10 sec
+    let g:last_update_timestamp_git_branch = strftime('%s')
+    let g:last_update_git_branch_name = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  endif
+  return g:last_update_git_branch_name
 endfunction
 
 function! StatuslineGit()
@@ -181,7 +187,7 @@ set statusline+=\ %m
 set statusline+=%=
 set statusline+=%#PmenuSel#
 set statusline+=\ %y
-set statusline+=\ 
+set statusline+=\
 
 "*****************************************************************************
 "" Mappings
