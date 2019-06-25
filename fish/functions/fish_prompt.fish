@@ -54,7 +54,11 @@ function fish_prompt
     | sed 's/^ $//g'
   )
 
-	switch $fish_bind_mode
+  if [ -e '.git' ]
+    printf '\n  '
+  end
+
+  switch $fish_bind_mode
 		case default
       _print_in_color '<< ' (_prompt_color_for_status $last_status)
 		case insert
