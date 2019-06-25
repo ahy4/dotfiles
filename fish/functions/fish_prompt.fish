@@ -54,7 +54,8 @@ function fish_prompt
     | sed 's/^ $//g'
   )
 
-  if [ -e '.git' ]
+set git_branch (__fish_git_prompt | sed 's/ //g')
+  if [ "$git_branch" != '' ]
     printf '\n  '
   end
 
