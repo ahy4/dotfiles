@@ -19,8 +19,14 @@ if dein#load_state('~/.cache/dein')
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
   " Git
-  call dein#add('airblade/vim-gitgutter') ":G*** commands
+  call dein#add('airblade/vim-gitgutter')
   call dein#add('tpope/vim-fugitive')
+
+  " Ranger dependency for neovim
+  call dein#add('rbgrouleff/bclose.vim')
+
+  " Ranger
+  call dein#add('francoiscabrol/ranger.vim')
 
   " Typescript
   call dein#add('neoclide/coc.nvim', { 'merge': 0, 'build': './install.sh nightly' })
@@ -124,6 +130,14 @@ nnoremap <Leader>fm :Maps<CR>
 
 " Refresh on Save
 nnoremap <Leader>fs :w<CR>:GitGutter<CR>:echo "saved"<CR>
+
+"*** ranger ***
+
+" disable default keybind
+let g:ranger_map_keys = 0
+
+" set new keybind
+nnoremap <Leader>ft :Ranger<CR>
 
 "*****************************************************************************
 "" Visual Settings
