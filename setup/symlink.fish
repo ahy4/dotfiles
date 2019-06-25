@@ -39,6 +39,9 @@ if [ "(expr substr (uname -s) 1 5)" = 'Linux' ]
   ln -s (pwd)/.Xresources $HOME/.Xresources
   # to reload: xrdb ~/.Xresources
 
+  ### .xprofile
+  ln -s (pwd)/.xprofile $HOME/.xprofile
+
   ### xkeysnail (low-level key bindings)
   sudo mkdir -p /etc/xkeysnail
   ln -s (pwd)/xkeysnail/config.py /etc/xkeysnail
