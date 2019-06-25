@@ -8,6 +8,7 @@ end
 alias g='git'
 alias docker='sudo docker'
 alias vim='nvim'
+alias r='ranger'
 
 ### key bindings
 

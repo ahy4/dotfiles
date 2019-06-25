@@ -28,6 +28,11 @@ wget https://git.io/fundle -O ~/.config/fish/functions/fundle.fish
 mkdir -p ~/.config/nvim
 ln -s (pwd)/nvim/init.vim $HOME/.config/nvim/init.vim
 
+### ranger
+mkdir -p $HOME/.config/ranger
+ln -s (pwd)/ranger/rc.conf $HOME/.config/ranger/rc.conf
+ln -s (pwd)/ranger/rifle.conf $HOME/.config/ranger/rifle.conf
+ln -s (pwd)/ranger/scope.sh $HOME/.config/ranger/scope.sh
 
 ###
 # Linux Setting
