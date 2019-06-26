@@ -22,7 +22,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('tpope/vim-fugitive')
 
-  " Ranger dependency for neovim
+ " Ranger dependency for neovim
   call dein#add('rbgrouleff/bclose.vim')
 
   " Ranger
@@ -33,6 +33,15 @@ if dein#load_state('~/.cache/dein')
   " and :CocInstall coc-tsserver coc-tslint-plugin
   call dein#add('leafgarland/typescript-vim')
   call dein#add('peitalin/vim-jsx-typescript')
+
+  " surround.vim
+  call dein#add('tpope/vim-surround')
+
+  " lexima.vim
+  call dein#add('cohama/lexima.vim')
+
+  " EasyMotion
+  call dein#add('easymotion/vim-easymotion')
 
   call dein#end()
   call dein#save_state()
@@ -180,7 +189,7 @@ nnoremap <silent> <leader>sh :terminal<CR>
 let g:last_update_timestamp_git_branch = 0
 let g:last_update_git_branch_name = ''
 function! GitBranch()
-  if strftime('%s') > g:last_update_timestamp_git_branch + 10 " clear cache by 10 sec
+  if strftime('%s') > g:last_update_timestamp_git_branch + 60 " clear cache by 60 sec
     let g:last_update_timestamp_git_branch = strftime('%s')
     let g:last_update_git_branch_name = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
   endif
