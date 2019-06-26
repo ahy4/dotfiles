@@ -40,8 +40,11 @@ if dein#load_state('~/.cache/dein')
   " lexima.vim
   call dein#add('cohama/lexima.vim')
 
-  " EasyMotion
-  call dein#add('easymotion/vim-easymotion')
+  " sneak.vim
+  call dein#add('justinmk/vim-sneak')
+
+  " winresizer.vim
+  call dein#add('simeji/winresizer')
 
   call dein#end()
   call dein#save_state()
@@ -147,6 +150,13 @@ let g:ranger_map_keys = 0
 
 " set new keybind
 nnoremap <Leader>ft :Ranger<CR>
+
+"*** sneak.vim ***
+
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 
 "*****************************************************************************
 "" Visual Settings
