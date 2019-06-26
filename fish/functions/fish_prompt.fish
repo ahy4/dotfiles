@@ -54,10 +54,7 @@ function fish_prompt
     | sed 's/^ $//g'
   )
 
-set git_branch (__fish_git_prompt | sed 's/ //g')
-  if [ "$git_branch" != '' ]
-    printf '\n  '
-  end
+  printf '\n  '
 
   switch $fish_bind_mode
 		case default
