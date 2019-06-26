@@ -266,7 +266,7 @@ vnoremap <Leader>sr :s///g<Left><Left><Left>
 
 "" ESC
 inoremap jk <Esc>
-tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc><Esc> <C-\><C-n>
 
 "" nohl
 nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>
