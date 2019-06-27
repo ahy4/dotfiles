@@ -296,10 +296,6 @@ if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
 endif
 
-vnoremap YY "+y<CR>
-noremap <leader>p "+gP<CR>
-vnoremap XX "+x<CR>
-
 "" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
@@ -307,3 +303,4 @@ vnoremap K :m '<-2<CR>gv=gv
 "" Tab by single press
 nnoremap < <<
 nnoremap > >>
+
