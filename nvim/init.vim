@@ -35,7 +35,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('peitalin/vim-jsx-typescript')
 
   " surround.vim
-  call dein#add('tpope/vim-surround')
+  "call dein#add('tpope/vim-surround')
 
   " lexima.vim
   call dein#add('cohama/lexima.vim')
@@ -129,8 +129,11 @@ nnoremap <Leader>fa :Ag<CR>
 " ripgrep search (needs install)
 nnoremap <Leader>fr :Rg<CR>
 
-" buffer and v:oldfiles
-nnoremap <Leader>fb :History<CR>
+" buffer
+nnoremap <Leader>fb :Buffers<CR>
+
+" v:oldfiles
+nnoremap <Leader>fh :History<CR>
 
 " command list
 nnoremap <Leader>fc :Commands<CR>
@@ -162,11 +165,11 @@ map T <Plug>Sneak_T
 "" Visual Settings
 "*****************************************************************************
 syntax on
-set ruler
-set number
 
 "" 相対行表示
-set relativenumber
+set number relativenumber
+"" toggle
+nnoremap <Leader>Tn :set number! relativenumber!<CR>
 
 "" カーソル行ハイライト
 set cursorline
@@ -185,13 +188,11 @@ set laststatus=2
 set modeline
 set modelines=10
 
-" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " terminal emulation
-nnoremap <silent> <leader>sh :terminal<CR>
+nnoremap <leader>tt :tabnew<CR>:terminal<CR>i
 
 
 """ Status Line
@@ -235,7 +236,7 @@ nnoremap <Leader>vr :source ~/.config/nvim/init.vim<CR>
 "" Tabs
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
-nnoremap <silent> <S-t> :tabnew<CR>
+nnoremap T :tabnew<CR>
 
 nnoremap <Leader>qq :q<CR>
 
@@ -251,14 +252,12 @@ noremap <leader>bp :bn<CR>
 noremap <leader>bd :bd<CR>
 
 "" Cursor
-nnoremap <C-j> }
-nnoremap <C-k> {
-nnoremap <Leader>h ^
-nnoremap <Leader>l $
-
-"" Search
-" ***
-nnoremap <Space>sf :FlyGrep<CR>
+nnoremap <C-j> }zz
+nnoremap <C-k> {zz
+nnoremap <C-d> <C-d>
+nnoremap <C-u> <C-u>zz
+nnoremap H ^
+nnoremap L $
 
 "" Replace
 nnoremap <Leader>sr :<C-u>%s///g<Left><Left><Left>
@@ -267,6 +266,7 @@ vnoremap <Leader>sr :s///g<Left><Left><Left>
 "" ESC
 inoremap jk <Esc>
 tnoremap <Esc><Esc> <C-\><C-n>
+tnoremap <Leader>qq <C-\><C-n>:close<CR>
 
 "" nohl
 nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>
@@ -290,11 +290,6 @@ endif
 "" Disable danger command
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
-
-"" Copy/Paste/Cut
-if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
-endif
 
 "" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
