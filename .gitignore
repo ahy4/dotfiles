@@ -131,4 +131,26 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-# End of https://www.gitignore.io/api/node,linux,macos
+# End of https://www.gitignore.io/api/node,linux,macosgibo 2.2.2 by Simon Whitaker <sw@netcetera.org>
+https://github.com/simonwhitaker/gibo
+### https://raw.github.com/github/gitignore/e32de69dc7a71f84b1da648a5d893dd8bcc87d8a/Global/Vim.gitignore
+
+# Swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+
