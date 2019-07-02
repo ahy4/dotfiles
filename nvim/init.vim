@@ -114,6 +114,11 @@ endif
 "" 矩形選択のとき、文字が存在しない場所も選択可能にする
 set virtualedit=block
 
+"" Copy/Paste/Cut
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
+
 "*****************************************************************************
 "" Plugin settings
 "*****************************************************************************
@@ -141,6 +146,12 @@ nnoremap <Leader>fc :Commands<CR>
 " normal mode keybindings
 nnoremap <Leader>fm :Maps<CR>
 
+" search current word
+nnoremap <Leader>fw "ayiw:Rg <C-r>a<CR>
+
+"*** coc.nvim ***
+nnoremap <Leader>fd :call CocAction('jumpDefinition', 'tab drop')<CR>zz
+
 "*** Git Gutter***
 
 " Refresh on Save
@@ -158,8 +169,6 @@ nnoremap <Leader>ft :Ranger<CR>
 
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
 
 "*****************************************************************************
 "" Visual Settings
@@ -169,7 +178,10 @@ syntax on
 "" 相対行表示
 set number relativenumber
 "" toggle
-nnoremap <Leader>Tn :set number! relativenumber!<CR>
+nnoremap <Leader>tn :set number! relativenumber!<CR>
+
+"" paste toggle
+nnoremap <Leader>tp :set paste!<CR>
 
 "" カーソル行ハイライト
 set cursorline
@@ -230,7 +242,7 @@ noremap <Leader>sh :<C-u>split<CR>
 noremap <Leader>sv :<C-u>vsplit<CR>
 
 "" Vimrc 編集用
-nnoremap <Leader>ve :e ~/workspace/dotfiles/nvim/init.vim<CR>
+nnoremap <Leader>ve :tabe ~/workspace/dotfiles/nvim/init.vim<CR>
 nnoremap <Leader>vr :source ~/.config/nvim/init.vim<CR>
 
 "" Tabs
@@ -244,7 +256,7 @@ nnoremap <Leader>qq :q<CR>
 nnoremap <Leader>fSS :w !sudo -S tee > /dev/null %<CR>
 
 "" Set working directory
-nnoremap <leader>fw :lcd %:p:h<CR>
+nnoremap <leader>tw :lcd %:p:h<CR>
 
 "" Buffer nav
 noremap <leader>bp :bp<CR>
@@ -254,7 +266,7 @@ noremap <leader>bd :bd<CR>
 "" Cursor
 nnoremap <C-j> }zz
 nnoremap <C-k> {zz
-nnoremap <C-d> <C-d>
+nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap H ^
 nnoremap L $
@@ -298,4 +310,8 @@ vnoremap K :m '<-2<CR>gv=gv
 "" Tab by single press
 nnoremap < <<
 nnoremap > >>
+
+"" use register `a`
+nnoremap m "_
+vnoremap m "_
 
