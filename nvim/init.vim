@@ -311,6 +311,10 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap < <<
 nnoremap > >>
 
+"" continuously indent
+vnoremap > >gv
+vnoremap < <gv
+
 "" use register `a`
 nnoremap m "_
 vnoremap m "_
