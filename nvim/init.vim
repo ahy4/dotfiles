@@ -46,6 +46,9 @@ if dein#load_state('~/.cache/dein')
   " winresizer.vim
   call dein#add('simeji/winresizer')
 
+  " TwitVim
+  call dein#add('ahyahya/twitvim')
+
   call dein#end()
   call dein#save_state()
 endif
@@ -182,6 +185,10 @@ nnoremap <Leader>tn :set number! relativenumber!<CR>
 
 "" paste toggle
 nnoremap <Leader>tp :set paste!<CR>
+
+"" show tab and trail space
+set list
+set listchars=tab:>-,trail:-
 
 "" カーソル行ハイライト
 set cursorline
