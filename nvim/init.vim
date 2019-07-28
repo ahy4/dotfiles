@@ -28,11 +28,16 @@ if dein#load_state('~/.cache/dein')
   " Ranger
   call dein#add('francoiscabrol/ranger.vim')
 
-  " Typescript
+  " CoC.nvim
   call dein#add('neoclide/coc.nvim', { 'merge': 0, 'build': './install.sh nightly' })
-  " and :CocInstall coc-tsserver coc-tslint-plugin
+
+  " Typescript
+  " :CocInstall coc-tsserver coc-tslint-plugin
   call dein#add('leafgarland/typescript-vim')
   call dein#add('peitalin/vim-jsx-typescript')
+
+  " PHP
+  " :CocInstall coc-phpls
 
   " surround.vim
   "call dein#add('tpope/vim-surround')
