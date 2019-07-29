@@ -57,6 +57,9 @@ if dein#load_state('~/.cache/dein')
   " Vaffle filer
   call dein#add('cocopon/vaffle.vim')
 
+  " Multi Cursor
+  call dein#add('terryma/vim-multiple-cursors')
+
   call dein#end()
   call dein#save_state()
 endif
