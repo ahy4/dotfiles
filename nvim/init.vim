@@ -51,8 +51,11 @@ if dein#load_state('~/.cache/dein')
   " winresizer.vim
   call dein#add('simeji/winresizer')
 
-  " vim-which-key (keybind support like spacemacs)
-  call dein#add('liuchengxu/vim-which-key')
+  " comment gcc, gci, gcui
+  call dein#add('tyru/caw.vim')
+
+  " Vaffle filer
+  call dein#add('cocopon/vaffle.vim')
 
   call dein#end()
   call dein#save_state()
@@ -137,28 +140,28 @@ endif
 nnoremap <Leader>sf :FZF<CR>
 
 " ag search (needs install)
-nnoremap <Leader>fa :Ag<CR>
+nnoremap <Leader>sa :Ag<CR>
 
 " ripgrep search (needs install)
-nnoremap <Leader>fr :Rg<CR>
+nnoremap <Leader>sr :Rg<CR>
 
 " buffer
-nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>sb :Buffers<CR>
 
 " v:oldfiles
-nnoremap <Leader>fh :History<CR>
+nnoremap <Leader>sh :History<CR>
 
 " command list
-nnoremap <Leader>fc :Commands<CR>
+nnoremap <Leader>sc :Commands<CR>
 
 " normal mode keybindings
-nnoremap <Leader>fm :Maps<CR>
+nnoremap <Leader>sm :Maps<CR>
 
 " search current word
-nnoremap <Leader>fw "ayiw:Rg <C-r>a<CR>
+nnoremap <Leader>sw "ayiw:Rg <C-r>a<CR>
 
 "*** coc.nvim ***
-nnoremap <Leader>fd :call CocAction('jumpDefinition', 'tab drop')<CR>zz
+nnoremap <Leader>d :call CocAction('jumpDefinition', 'tab drop')<CR>zz
 
 "*** Git Gutter***
 
@@ -170,18 +173,16 @@ nnoremap <Leader>fs :w<CR>:GitGutter<CR>:echo "saved"<CR>
 " disable default keybind
 let g:ranger_map_keys = 0
 
-" set new keybind
-nnoremap <Leader>ft :Ranger<CR>
+nnoremap <Leader>fr :tabnew<CR>:Ranger<CR>
+
+"*** Vaffle ***
+
+nnoremap <Leader>fv :tabnew<CR>:Vaffle<CR>
 
 "*** sneak.vim ***
 
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
-
-"*** vim-which-key
-
-set timeoutlen=500
-nnoremap <Leader> :WhichKeyVisual '<Space>'<CR>
 
 "*****************************************************************************
 "" Visual Settings
@@ -338,7 +339,8 @@ nnoremap > >>
 vnoremap > >gv
 vnoremap < <gv
 
-"" use register `a`
-nnoremap m "_
-vnoremap m "_
+"" use register `a`.
+"" example: mdiw mp
+nnoremap m "a
+vnoremap m "a
 
