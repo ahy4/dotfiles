@@ -51,8 +51,8 @@ if dein#load_state('~/.cache/dein')
   " winresizer.vim
   call dein#add('simeji/winresizer')
 
-  " TwitVim
-  call dein#add('ahyahya/twitvim')
+  " vim-which-key (keybind support like spacemacs)
+  call dein#add('liuchengxu/vim-which-key')
 
   call dein#end()
   call dein#save_state()
@@ -134,7 +134,7 @@ endif
 "*** fzf ***
 
 " files
-nnoremap <Leader>ff :FZF<CR>
+nnoremap <Leader>sf :FZF<CR>
 
 " ag search (needs install)
 nnoremap <Leader>fa :Ag<CR>
@@ -177,6 +177,11 @@ nnoremap <Leader>ft :Ranger<CR>
 
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
+
+"*** vim-which-key
+
+set timeoutlen=500
+nnoremap <Leader> :WhichKeyVisual '<Space>'<CR>
 
 "*****************************************************************************
 "" Visual Settings
@@ -257,6 +262,12 @@ noremap <Leader>sv :<C-u>vsplit<CR>
 nnoremap <Leader>ve :tabe ~/workspace/dotfiles/nvim/init.vim<CR>
 nnoremap <Leader>vr :source ~/.config/nvim/init.vim<CR>
 
+"" 折返し行の移動
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
 "" Tabs
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
@@ -272,7 +283,7 @@ nnoremap <leader>tw :lcd %:p:h<CR>
 
 "" Buffer nav
 noremap <leader>bp :bp<CR>
-noremap <leader>bp :bn<CR>
+noremap <leader>bn :bn<CR>
 noremap <leader>bd :bd<CR>
 
 "" Cursor
