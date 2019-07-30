@@ -308,8 +308,8 @@ nnoremap H ^
 nnoremap L $
 
 "" Replace
-nnoremap <Leader>sr :<C-u>%s///g<Left><Left><Left>
-vnoremap <Leader>sr :s///g<Left><Left><Left>
+nnoremap gs :<C-u>%s///g<Left><Left><Left>
+vnoremap gs :s///g<Left><Left><Left>
 
 "" ESC
 inoremap jk <Esc>
