@@ -171,6 +171,9 @@ nnoremap <Leader>d :call CocAction('jumpDefinition', 'tab drop')<CR>zz
 " Refresh on Save
 nnoremap <Leader>fs :w<CR>:GitGutter<CR>:echo "saved"<CR>
 
+" Disable Keybind
+let g:gitgutter_map_keys = 0
+
 "*** ranger ***
 
 " disable default keybind
@@ -259,8 +262,14 @@ set statusline+=\ %y
 "*****************************************************************************
 
 "" Split
-noremap <Leader>sh :<C-u>split<CR>
-noremap <Leader>sv :<C-u>vsplit<CR>
+noremap <Leader>- :<C-u>split<CR>
+noremap <Leader>\| :<C-u>vsplit<CR>
+
+"" Move Pane
+nnoremap <Leader>l <C-w>l
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>k <C-w>k
 
 "" Vimrc 編集用
 nnoremap <Leader>ve :tabe ~/workspace/dotfiles/nvim/init.vim<CR>
