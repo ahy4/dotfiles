@@ -40,8 +40,6 @@ end
 function fish_prompt
   set -l last_status $status
 
-  echo
-
 	set_color $fish_color_cwd
   printf '%s' (prompt_pwd)
 
