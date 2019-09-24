@@ -60,6 +60,13 @@ if dein#load_state('~/.cache/dein')
   " Multi Cursor
   call dein#add('terryma/vim-multiple-cursors')
 
+  " markdown
+  call dein#add('tpope/vim-markdown')
+  call dein#add('dhruvasagar/vim-table-mode')
+
+  " Find and Replace
+  call dein#add('brooth/far.vim')
+
   call dein#end()
   call dein#save_state()
 endif
@@ -142,14 +149,14 @@ endif
 " files
 nnoremap <Leader>sf :FZF<CR>
 
-" ag search (needs install)
-nnoremap <Leader>sa :Ag<CR>
-
 " ripgrep search (needs install)
-nnoremap <Leader>sr :Rg<CR>
+nnoremap <Leader>ss :Rg<CR>
 
 " buffer
 nnoremap <Leader>sb :Buffers<CR>
+
+" execute :Fardo
+nnoremap <Leader>sr :Fardo<CR>
 
 " v:oldfiles
 nnoremap <Leader>sh :History<CR>
@@ -164,7 +171,7 @@ nnoremap <Leader>sm :Maps<CR>
 nnoremap <Leader>sw "ayiw:Rg <C-r>a<CR>
 
 "*** coc.nvim ***
-nnoremap <Leader>d :call CocAction('jumpDefinition', 'tab drop')<CR>zz
+nnoremap <Leader>sd :call CocAction('jumpDefinition', 'tab drop')<CR>zz
 
 "*** Git Gutter***
 
@@ -179,16 +186,25 @@ let g:gitgutter_map_keys = 0
 " disable default keybind
 let g:ranger_map_keys = 0
 
-nnoremap <Leader>fr :tabnew<CR>:Ranger<CR>
+nnoremap <Leader>fr :tab sp<CR>:Ranger<CR>
 
 "*** Vaffle ***
 
-nnoremap <Leader>fv :tabnew<CR>:Vaffle<CR>
+nnoremap <Leader>fv :Vaffle<CR>
+
+" expand('<sfile>:p:h')
 
 "*** sneak.vim ***
 
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
+
+"*** markdown table ***
+let g:table_mode_corner="|"
+
+"*** far.vim ***
+set lazyredraw
+set regexpengine=1
 
 "*****************************************************************************
 "" Visual Settings
@@ -308,8 +324,16 @@ nnoremap H ^
 nnoremap L $
 
 "" Replace
-nnoremap gs :<C-u>%s///g<Left><Left><Left>
-vnoremap gs :s///g<Left><Left><Left>
+nnoremap gS :<C-u>%s///g<Left><Left><Left>
+
+"" Replace by far
+vnoremap gS "hy:Far <C-r>h  **/*.ts --source=rg<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+"" Replace Current Word
+nnoremap gs :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+"" Replace Selected Word
+vnoremap gs "hy:%s/<C-r>h//gc<left><left><left>
 
 "" ESC
 inoremap jk <Esc>
