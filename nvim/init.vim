@@ -278,8 +278,9 @@ set statusline+=\ %y
 "*****************************************************************************
 
 "" Split
-noremap <Leader>- :<C-u>split<CR>
-noremap <Leader>\| :<C-u>vsplit<CR>
+noremap <Leader>- :<C-u>split<CR><C-w>j
+noremap <Leader>= :<C-u>split<CR><C-w>j
+noremap <Leader>\| :<C-u>vsplit<CR><C-w>l
 
 "" Move Pane
 nnoremap <Leader>l <C-w>l
