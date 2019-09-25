@@ -55,7 +55,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tyru/caw.vim')
 
   " Vaffle filer
-  call dein#add('cocopon/vaffle.vim')
+  call dein#add('ahyahya/vaffle.vim')
 
   " Multi Cursor
   call dein#add('terryma/vim-multiple-cursors')
@@ -190,9 +190,11 @@ nnoremap <Leader>fr :tab sp<CR>:Ranger<CR>
 
 "*** Vaffle ***
 
-nnoremap <Leader>fv :Vaffle<CR>
+" open current directory
+nnoremap <Leader>fv :call vaffle#init(expand('%:p:h'))<CR>:call vaffle#toggle_hidden()<CR>
 
-" expand('<sfile>:p:h')
+" open current working directory
+nnoremap <Leader>fw :Vaffle<CR>:call vaffle#toggle_hidden()<CR>
 
 "*** sneak.vim ***
 
@@ -281,6 +283,7 @@ set statusline+=\ %y
 noremap <Leader>- :<C-u>split<CR><C-w>j
 noremap <Leader>= :<C-u>split<CR><C-w>j
 noremap <Leader>\| :<C-u>vsplit<CR><C-w>l
+noremap <Leader><Bslash> :<C-u>vsplit<CR><C-w>l
 
 "" Move Pane
 nnoremap <Leader>l <C-w>l
@@ -380,4 +383,3 @@ vnoremap < <gv
 "" example: mdiw mp
 nnoremap m "a
 vnoremap m "a
-
