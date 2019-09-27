@@ -36,6 +36,9 @@ if dein#load_state('~/.cache/dein')
   call dein#add('leafgarland/typescript-vim')
   call dein#add('peitalin/vim-jsx-typescript')
 
+  " json
+  " :CocInstall coc-json
+
   " PHP
   " :CocInstall coc-phpls
 
@@ -173,6 +176,8 @@ nnoremap <Leader>sw "ayiw:Rg <C-r>a<CR>
 "*** coc.nvim ***
 nnoremap <Leader>sd :call CocAction('jumpDefinition', 'tab drop')<CR>zz
 
+nnoremap <Leader>sl :CocList<CR>
+
 "*** Git Gutter***
 
 " Refresh on Save
@@ -191,7 +196,8 @@ nnoremap <Leader>fr :tab sp<CR>:Ranger<CR>
 "*** Vaffle ***
 
 " open current directory
-nnoremap <Leader>fv :call vaffle#init(expand('%:p:h'))<CR>:call vaffle#toggle_hidden()<CR>
+nnoremap <Leader>fv :<C-u>execute "Vaffle" . expand('%:p:h')<CR>
+
 
 " open current working directory
 nnoremap <Leader>fw :Vaffle<CR>:call vaffle#toggle_hidden()<CR>
@@ -318,6 +324,8 @@ nnoremap <leader>tw :lcd %:p:h<CR>
 noremap <leader>bp :bp<CR>
 noremap <leader>bn :bn<CR>
 noremap <leader>bd :bd<CR>
+noremap <leader>br :bufdo e<CR>
+noremap <leader>bc :checktime<CR>
 
 "" Cursor
 nnoremap <C-j> }zz
