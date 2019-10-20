@@ -206,6 +206,8 @@ nnoremap <Leader>fw :Vaffle<CR>:call vaffle#toggle_hidden()<CR>
 
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
+map s <Plug>SneakNext
+map S <Plug>SneakPrevious
 
 "*** markdown table ***
 let g:table_mode_corner="|"
