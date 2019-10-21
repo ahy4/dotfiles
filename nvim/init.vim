@@ -351,8 +351,8 @@ vnoremap gs "hy:%s/<C-r>h//gc<left><left><left>
 
 "" Replace line up/down
 " https://stackoverflow.com/questions/15296393/line-swapping-in-vim
-nnoremap <Leader>k :<C-u>execute (line(".")) . 'm' . (line(".") - 1) . '\|' . (line(".") - 1) . 'm' . (line("."))<CR>k
-nnoremap <Leader>j :<C-u>execute (line(".")) . 'm' . (line(".") + 1) . '\|' . (line(".") + 1) . 'm' . (line("."))<CR>
+nnoremap <Leader>K :<C-u>execute (line(".")) . 'm' . (line(".") - 1) . '\|' . (line(".") - 1) . 'm' . (line("."))<CR>k
+nnoremap <Leader>J :<C-u>execute (line(".")) . 'm' . (line(".") + 1) . '\|' . (line(".") + 1) . 'm' . (line("."))<CR>
 
 "" ESC
 inoremap jk <Esc>
