@@ -196,7 +196,8 @@ nnoremap <Leader>fr :tab sp<CR>:Ranger<CR>
 "*** Vaffle ***
 
 " open current directory
-nnoremap <Leader>fv :<C-u>execute "Vaffle" . expand('%:p:h')<CR>
+"nnoremap <Leader>fv :<C-u>execute "Vaffle" . expand('%:p:h')<CR>
+nnoremap <Leader>fv :<C-u>execute "e " . expand('%:p:h')<CR>
 
 
 " open current working directory
