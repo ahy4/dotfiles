@@ -70,6 +70,10 @@ if dein#load_state('~/.cache/dein')
   " Find and Replace
   call dein#add('brooth/far.vim')
 
+  " colorscheme
+  call dein#add('arcticicestudio/nord-vim')
+
+
   call dein#end()
   call dein#save_state()
 endif
@@ -102,6 +106,9 @@ set expandtab
 
 "" Map leader to space
 let mapleader = "\<Space>"
+
+"" Colorscheme
+colorscheme nord
 
 "" Enable hidden buffers
 set hidden
