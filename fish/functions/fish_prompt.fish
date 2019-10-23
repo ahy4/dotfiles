@@ -52,8 +52,6 @@ function fish_prompt
     | sed 's/^ $//g'
   )
 
-  printf '\n  '
-
   switch $fish_bind_mode
 		case default
       _print_in_color '<< ' (_prompt_color_for_status $last_status)

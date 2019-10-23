@@ -70,6 +70,10 @@ if dein#load_state('~/.cache/dein')
   " Find and Replace
   call dein#add('brooth/far.vim')
 
+  " colorscheme
+  call dein#add('arcticicestudio/nord-vim')
+
+
   call dein#end()
   call dein#save_state()
 endif
@@ -102,6 +106,9 @@ set expandtab
 
 "" Map leader to space
 let mapleader = "\<Space>"
+
+"" Colorscheme
+colorscheme nord
 
 "" Enable hidden buffers
 set hidden
@@ -196,7 +203,8 @@ nnoremap <Leader>fr :tab sp<CR>:Ranger<CR>
 "*** Vaffle ***
 
 " open current directory
-nnoremap <Leader>fv :<C-u>execute "Vaffle" . expand('%:p:h')<CR>
+"nnoremap <Leader>fv :<C-u>execute "Vaffle" . expand('%:p:h')<CR>
+nnoremap <Leader>fv :<C-u>execute "e " . expand('%:p:h')<CR>
 
 
 " open current working directory
@@ -206,6 +214,8 @@ nnoremap <Leader>fw :Vaffle<CR>:call vaffle#toggle_hidden()<CR>
 
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
+map s <Plug>SneakNext
+map S <Plug>SneakPrevious
 
 "*** markdown table ***
 let g:table_mode_corner="|"
