@@ -120,7 +120,7 @@ set ignorecase
 set smartcase
 
 "" * で勝手に次の結果に移動しないようにする
-noremap * *N
+noremap * *``
 
 set fileformats=unix,dos,mac
 
