@@ -6,7 +6,7 @@ from xkeysnail.transform import *
 define_modmap({
     Key.CAPSLOCK: Key.LEFT_CTRL,
     Key.LEFT_ALT: Key.LEFT_META,
-    #Key.LEFT_META: Key.LEFT_ALT
+    Key.GRAVE: Key.LEFT_META,
 })
 
 define_multipurpose_modmap({
@@ -25,12 +25,7 @@ define_keymap(None, {
 }, "Force C-h backspace")
 
 define_keymap(None, {
-    K('Super-c'): K('C-c'),
-    K('Super-v'): K('C-v'),
-    K('Super-Shift-c'): K('C-c'),
-    K('Super-Shift-v'): K('C-v'),
-    K('Super-x'): K('C-x'),
-    K('Super-a'): K('C-a'),
-    K('Super-w'): K('C-w'),
-}, "Mac like keybind")
+    K('C-Henkan'): K('C-Tab'),
+    K('C-Muhenkan'): K('C-Shift-Tab'),
+}, "Chrome tabswitch")
 

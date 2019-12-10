@@ -1,5 +1,5 @@
 "*****************************************************************************
-"" Dein.vim
+"",Dein.vim
 "*****************************************************************************
 
 if &compatible
@@ -124,7 +124,7 @@ set ignorecase
 set smartcase
 
 "" * で勝手に次の結果に移動しないようにする
-noremap * *N
+noremap * *``
 
 set fileformats=unix,dos,mac
 
@@ -368,8 +368,9 @@ vnoremap / "hy/<C-r>h<CR>N
 
 "" Replace line up/down
 " https://stackoverflow.com/questions/15296393/line-swapping-in-vim
-nnoremap <Leader>K :<C-u>execute (line(".")) . 'm' . (line(".") - 1) . '\|' . (line(".") - 1) . 'm' . (line("."))<CR>k
-nnoremap <Leader>J :<C-u>execute (line(".")) . 'm' . (line(".") + 1) . '\|' . (line(".") + 1) . 'm' . (line("."))<CR>
+" クソコードそのうちなおす
+nnoremap <Leader>K :execute (line(".")) . 'm' . (line(".") - 1) . '\|' . (line(".") - 1) . 'm' . (line("."))<CR>k
+nnoremap <Leader>J :execute (line(".")) . 'm' . (line(".") + 1) . '\|' . (line(".") + 1) . 'm' . (line("."))<CR>
 
 "" ESC
 inoremap jk <Esc>
@@ -377,7 +378,7 @@ tnoremap <Esc><Esc> <C-\><C-n>
 tnoremap <Leader>qq <C-\><C-n>:close<CR>
 
 "" nohl
-nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>
+nnoremap <silent> <Esc><Esc> :let @/ = ""<CR>
 
 "" Line Add
 nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
@@ -415,3 +416,37 @@ vnoremap < <gv
 "" example: mdiw mp
 nnoremap m "a
 vnoremap m "a
+
+"*****************************************************************************
+"" Multicorsor
+"*****************************************************************************
+
+let g:mc = "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>"
+
+" multiedit per word (repeat: .)
+nnoremap cn *``cgn
+nnoremap cN *``cgN
+
+vnoremap <expr> cn g:mc . "``cgn"
+vnoremap <expr> cN g:mc . "``cgN"
+
+function! SetupCR()
+  nnoremap <Enter> :nnoremap <lt>Enter> n@z<CR>q:<C-u>let @z=strpart(@z,0,strlen(@z)-1)<CR>n@z
+endfunction
+
+" multiedit by macro (repeat: enter)
+nnoremap cm :call SetupCR()<CR>*``qz
+nnoremap cM :call SetupCR()<CR>#``qz
+
+vnoremap <expr> cm ":\<C-u>call SetupCR()\<CR>" . "gv" . g:mc . "``qz"
+vnoremap <expr> cM ":\<C-u>call SetupCR()\<CR>" . "gv" . substitute(g:mc, '/', '?', 'g') . "``qz"
+
+" multipaste
+function! MultiPaste()
+  let lineContent=split(@", "\n")
+  let lineNo=line(".")
+  execute (lineNo) . ',' . (lineNo+len(lineContent)-1) . 's/$/\=remove(lineContent, 0)/'
+  let @/ = ""
+endfunction
+
+nnoremap cp :call MultiPaste()<CR>
