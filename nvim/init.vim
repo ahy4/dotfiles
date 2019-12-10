@@ -434,7 +434,7 @@ vnoremap <expr> cM ":\<C-u>call SetupCR()\<CR>" . "gv" . substitute(g:mc, '/', '
 
 " multipaste
 function! MultiPaste()
-  let lineContent=split(@", "\n")
+  let lineContent=split(@*, "\n")
   let lineNo=line(".")
   execute (lineNo) . ',' . (lineNo+len(lineContent)-1) . 's/$/\=remove(lineContent, 0)/'
   let @/ = ""
