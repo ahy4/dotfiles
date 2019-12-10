@@ -29,8 +29,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('francoiscabrol/ranger.vim')
 
   " CoC.nvim
-  call dein#add('neoclide/coc.nvim', { 'merge': 0, 'build': './install.sh nightly' })
-
+  call dein#add('neoclide/coc.nvim', { 'merge': 0, 'build': './install.sh nightly' }) 
   " Typescript
   " :CocInstall coc-tsserver coc-tslint-plugin
   call dein#add('leafgarland/typescript-vim')
@@ -416,6 +415,9 @@ vnoremap < <gv
 "" example: mdiw mp
 nnoremap m "a
 vnoremap m "a
+
+"" paste with auto indent
+nnoremap <C-p> p]
 
 "*****************************************************************************
 "" Multicorsor
