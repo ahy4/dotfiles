@@ -36,6 +36,10 @@ if dein#load_state('~/.cache/dein')
   call dein#add('leafgarland/typescript-vim')
   call dein#add('peitalin/vim-jsx-typescript')
 
+
+  " Mustache (handlebars) syntax highlight
+  call dein#add('mustache/vim-mustache-handlebars')
+
   " json
   " :CocInstall coc-json
 
@@ -340,6 +344,8 @@ noremap <leader>bc :checktime<CR>
 "" Cursor
 nnoremap <C-j> }zz
 nnoremap <C-k> {zz
+vnoremap <C-j> }zz
+vnoremap <C-k> {zz
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap H ^
@@ -356,6 +362,9 @@ nnoremap gs :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 "" Replace Selected Word
 vnoremap gs "hy:%s/<C-r>h//gc<left><left><left>
+
+"" Search Selected Word
+vnoremap / "hy/<C-r>h<CR>N
 
 "" Replace line up/down
 " https://stackoverflow.com/questions/15296393/line-swapping-in-vim

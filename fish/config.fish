@@ -9,6 +9,7 @@ alias g='git'
 alias docker='sudo docker'
 alias vim='nvim'
 alias r='ranger'
+alias c='clear'
 
 ### key bindings
 
