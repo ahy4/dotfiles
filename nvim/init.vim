@@ -364,7 +364,7 @@ nnoremap gs :%s/\<<C-r><C-w>\>//g<Left><Left>
 vnoremap gs "hy:%s/<C-r>h//gc<left><left><left>
 
 "" Search Selected Word
-vnoremap / "hy/<C-r>h<CR>N
+vnoremap // "hy/<C-r>h<CR>N
 
 "" Replace line up/down
 " https://stackoverflow.com/questions/15296393/line-swapping-in-vim
@@ -437,6 +437,8 @@ endfunction
 " multiedit by macro (repeat: enter)
 nnoremap cm :call SetupCR()<CR>*``qz
 nnoremap cM :call SetupCR()<CR>#``qz
+nnoremap cl :call SetupCR()<CR>/$<CR>Nqz
+nnoremap cL :call SetupCR()<CR>?$<CR>Nqz
 
 vnoremap <expr> cm ":\<C-u>call SetupCR()\<CR>" . "gv" . g:mc . "``qz"
 vnoremap <expr> cM ":\<C-u>call SetupCR()\<CR>" . "gv" . substitute(g:mc, '/', '?', 'g') . "``qz"
