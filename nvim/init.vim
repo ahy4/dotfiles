@@ -29,8 +29,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('francoiscabrol/ranger.vim')
 
   " CoC.nvim
-  call dein#add('neoclide/coc.nvim', { 'merge': 0, 'build': './install.sh nightly' })
-
+  call dein#add('neoclide/coc.nvim', { 'merge': 0, 'build': './install.sh nightly' }) 
   " Typescript
   " :CocInstall coc-tsserver coc-tslint-plugin
   call dein#add('leafgarland/typescript-vim')
@@ -417,6 +416,9 @@ vnoremap < <gv
 nnoremap m "a
 vnoremap m "a
 
+"" paste with auto indent
+nnoremap <C-p> p]
+
 "*****************************************************************************
 "" Multicorsor
 "*****************************************************************************
@@ -445,7 +447,7 @@ vnoremap <expr> cM ":\<C-u>call SetupCR()\<CR>" . "gv" . substitute(g:mc, '/', '
 
 " multipaste
 function! MultiPaste()
-  let lineContent=split(@", "\n")
+  let lineContent=split(@*, "\n")
   let lineNo=line(".")
   execute (lineNo) . ',' . (lineNo+len(lineContent)-1) . 's/$/\=remove(lineContent, 0)/'
   let @/ = ""
