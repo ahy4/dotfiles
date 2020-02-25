@@ -24,6 +24,10 @@
   dp = diff HEAD^ # diff previous commit
   st = !git add && git stash # stash anyway
 
+[commit]
+  verbose = true
+  gpgSign = true
+
 [push]
   default = simple
 [user]
