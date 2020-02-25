@@ -10,7 +10,9 @@ define_modmap({
 })
 
 define_multipurpose_modmap({
-    Key.MUHENKAN: [Key.MUHENKAN, Key.RIGHT_ALT]
+    Key.MUHENKAN: [Key.MUHENKAN, Key.RIGHT_ALT],
+    Key.LEFT_META: [Key.MUHENKAN, Key.LEFT_META],
+    Key.RIGHT_META: [Key.HENKAN, Key.RIGHT_META],
 })
 
 define_keymap(None, {
@@ -28,4 +30,3 @@ define_keymap(None, {
     K('C-Henkan'): K('C-Tab'),
     K('C-Muhenkan'): K('C-Shift-Tab'),
 }, "Chrome tabswitch")
-

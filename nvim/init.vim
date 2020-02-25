@@ -63,9 +63,6 @@ if dein#load_state('~/.cache/dein')
   " Vaffle filer
   call dein#add('ahyahya/vaffle.vim')
 
-  " Multi Cursor
-  call dein#add('terryma/vim-multiple-cursors')
-
   " markdown
   call dein#add('tpope/vim-markdown')
   call dein#add('dhruvasagar/vim-table-mode')
@@ -76,6 +73,7 @@ if dein#load_state('~/.cache/dein')
   " colorscheme
   call dein#add('arcticicestudio/nord-vim')
 
+  call dein#add('camspiers/lens.vim')
 
   call dein#end()
   call dein#save_state()
@@ -267,6 +265,8 @@ nnoremap N Nzzzv
 " terminal emulation
 nnoremap <leader>tt :tabnew<CR>:terminal<CR>i
 
+" window最小横幅
+set winminwidth=10
 
 """ Status Line
 " https://shapeshed.com/vim-statuslines/
@@ -417,7 +417,7 @@ nnoremap m "a
 vnoremap m "a
 
 "" paste with auto indent
-nnoremap <C-p> p]
+nnoremap <C-p> ]p
 
 "*****************************************************************************
 "" Multicorsor
