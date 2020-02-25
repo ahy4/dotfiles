@@ -35,7 +35,6 @@ if dein#load_state('~/.cache/dein')
   call dein#add('leafgarland/typescript-vim')
   call dein#add('peitalin/vim-jsx-typescript')
 
-
   " Mustache (handlebars) syntax highlight
   call dein#add('mustache/vim-mustache-handlebars')
 
@@ -267,6 +266,7 @@ nnoremap <leader>tt :tabnew<CR>:terminal<CR>i
 
 " window最小横幅
 set winminwidth=10
+set winminheight=5
 
 """ Status Line
 " https://shapeshed.com/vim-statuslines/
