@@ -9,6 +9,7 @@
   a = !git add -A && git status -s # add all and show git status
   ai = !git add -i && git status -s # add all and show git status
   c = !git diff HEAD --check && git commit # commit
+  ca = !git diff HEAD --check && git commit --amend --no-edit # commit with amend
   alias = !git config --get-regexp '^alias\\.' | sed 's/alias\\.\\([^ ]*\\) \\(.*\\)/\\1\\\t => \\2/' | sort # show aliases
   s = status # git status
   n = !git add -A && git now # add and git now
