@@ -266,7 +266,6 @@ nnoremap <leader>tt :tabnew<CR>:terminal<CR>i
 
 " window最小横幅
 set winminwidth=10
-set winminheight=5
 
 """ Status Line
 " https://shapeshed.com/vim-statuslines/
