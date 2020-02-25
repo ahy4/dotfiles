@@ -8,7 +8,7 @@
   lp = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat # show change file and line counts
   a = !git add -A && git status -s # add all and show git status
   ai = !git add -i && git status -s # add all and show git status
-  c = commit # commit
+  c = !git diff HEAD --check && git commit # commit
   alias = !git config --get-regexp '^alias\\.' | sed 's/alias\\.\\([^ ]*\\) \\(.*\\)/\\1\\\t => \\2/' | sort # show aliases
   s = status # git status
   n = !git add -A && git now # add and git now
