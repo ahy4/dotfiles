@@ -17,9 +17,9 @@ alias c='clear'
 
 ### key bindings
 
-# vi key binding on fish
-fish_vi_key_bindings
-
+# default key binding on fish
+# 覚えて! https://bacchi.me/linux/terminal-tips/
+fish_default_key_bindings
 
 ### plugins
 fundle plugin 'jethrokuan/z'
@@ -29,7 +29,3 @@ fundle plugin 'tuvistavie/fundle' --path 'completions'
 fundle init
 # fundle install
 # fundle update
-
-### for fish prompt
-function fish_mode_prompt; end # erase default fish_mode_prompt for vi
-

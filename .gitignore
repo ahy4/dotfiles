@@ -1,3 +1,7 @@
+### Custom Ignore
+
+# vim session
+.session.vim
 
 # Created by https://www.gitignore.io/api/node,linux,macos
 # Edit at https://www.gitignore.io/?templates=node,linux,macos

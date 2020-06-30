@@ -52,15 +52,7 @@ function fish_prompt
     | sed 's/^ $//g'
   )
 
-  switch $fish_bind_mode
-		case default
-      _print_in_color '<< ' (_prompt_color_for_status $last_status)
-		case insert
-      _print_in_color '>> ' (_prompt_color_for_status $last_status)
-		case visual
-      _print_in_color '<< ' (_prompt_color_for_status $last_status)
-	end
-
+  _print_in_color '>> ' (_prompt_color_for_status $last_status)
 end
 
 function fish_right_prompt
