@@ -5,6 +5,10 @@
 if ! type pbcopy ^/dev/null >/dev/null
   alias pbcopy='xsel --clipboard --input'
 end
+if ! type pbpaste ^/dev/null >/dev/null
+  alias pbpaste='xsel --clipboard --output'
+end
+
 alias g='git'
 alias docker='sudo docker'
 alias vim='nvim'

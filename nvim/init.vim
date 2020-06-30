@@ -29,23 +29,20 @@ if dein#load_state('~/.cache/dein')
   call dein#add('francoiscabrol/ranger.vim')
 
   " CoC.nvim
-  call dein#add('neoclide/coc.nvim', { 'merge': 0, 'build': './install.sh nightly' }) 
+  call dein#add('neoclide/coc.nvim', {
+    \ 'merge': 0,
+    \ 'build': './install.sh nightly' })
+  " CocInstall coc-json coc-phpls coc-tabnine coc-tsserver coc-tslint-plugin
+
   " Typescript
-  " :CocInstall coc-tsserver coc-tslint-plugin
   call dein#add('leafgarland/typescript-vim')
   call dein#add('peitalin/vim-jsx-typescript')
 
   " Mustache (handlebars) syntax highlight
   call dein#add('mustache/vim-mustache-handlebars')
 
-  " json
-  " :CocInstall coc-json
-
-  " PHP
-  " :CocInstall coc-phpls
-
   " surround.vim
-  "call dein#add('tpope/vim-surround')
+  call dein#add('tpope/vim-surround')
 
   " lexima.vim
   call dein#add('cohama/lexima.vim')
@@ -56,11 +53,15 @@ if dein#load_state('~/.cache/dein')
   " winresizer.vim
   call dein#add('simeji/winresizer')
 
+  " auto resize panes
+  call dein#add('camspiers/lens.vim')
+
   " comment gcc, gci, gcui
   call dein#add('tyru/caw.vim')
 
   " Vaffle filer
-  call dein#add('ahyahya/vaffle.vim')
+  " call dein#add('ahyahya/vaffle.vim')
+  call dein#add('cocopon/vaffle.vim')
 
   " markdown
   call dein#add('tpope/vim-markdown')
@@ -71,8 +72,6 @@ if dein#load_state('~/.cache/dein')
 
   " colorscheme
   call dein#add('arcticicestudio/nord-vim')
-
-  call dein#add('camspiers/lens.vim')
 
   call dein#end()
   call dein#save_state()
@@ -162,6 +161,11 @@ nnoremap <Leader>sf :FZF<CR>
 " ripgrep search (needs install)
 nnoremap <Leader>ss :Rg<CR>
 
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
 " buffer
 nnoremap <Leader>sb :Buffers<CR>
 
@@ -188,6 +192,7 @@ nnoremap <Leader>sl :CocList<CR>
 "*** Git Gutter***
 
 " Refresh on Save
+" TODO: autocmd FileWritePost に書き換える
 nnoremap <Leader>fs :w<CR>:GitGutter<CR>:echo "saved"<CR>
 
 " Disable Keybind
@@ -262,7 +267,7 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " terminal emulation
-nnoremap <leader>tt :tabnew<CR>:terminal<CR>i
+nnoremap <Leader>tt :tabnew<CR>:terminal<CR>i
 
 " window最小横幅
 set winminwidth=10
@@ -324,7 +329,32 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 nnoremap T :tabnew<CR>
 
+"" Quit
 nnoremap <Leader>qq :q<CR>
+nnoremap <Leader>qa :qall<CR>
+
+"" Session
+fu! SaveSess()
+  execute 'mksession! ' . getcwd() . '/.session.vim'
+endfunction
+
+fu! RestoreSess()
+  if filereadable(getcwd() . '/.session.vim')
+    execute 'source ' . getcwd() . '/.session.vim'
+    if bufexists(1)
+      for l in range(1, bufnr('$'))
+        if bufwinnr(l) == -1
+          exec 'sbuffer ' . l
+        endif
+      endfor
+    endif
+  endif
+endfunction
+
+autocmd VimLeave * call SaveSess()
+autocmd VimEnter * nested call RestoreSess()
+
+set sessionoptions-=options  " Don't save options
 
 "" Force fxxk
 nnoremap <Leader>fSS :w !sudo -S tee > /dev/null %<CR>
@@ -337,6 +367,7 @@ noremap <leader>bp :bp<CR>
 noremap <leader>bn :bn<CR>
 noremap <leader>bd :bd<CR>
 noremap <leader>br :bufdo e<CR>
+noremap <leader>bD :bufdo bd<CR>
 noremap <leader>bc :checktime<CR>
 
 "" Cursor
@@ -346,8 +377,8 @@ vnoremap <C-j> }zz
 vnoremap <C-k> {zz
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
-nnoremap H ^
-nnoremap L $
+noremap H ^
+noremap L $
 
 "" Replace
 nnoremap gS :<C-u>%s///g<Left><Left><Left>
@@ -363,12 +394,6 @@ vnoremap gs "hy:%s/<C-r>h//gc<left><left><left>
 
 "" Search Selected Word
 vnoremap // "hy/<C-r>h<CR>N
-
-"" Replace line up/down
-" https://stackoverflow.com/questions/15296393/line-swapping-in-vim
-" クソコードそのうちなおす
-nnoremap <Leader>K :execute (line(".")) . 'm' . (line(".") - 1) . '\|' . (line(".") - 1) . 'm' . (line("."))<CR>k
-nnoremap <Leader>J :execute (line(".")) . 'm' . (line(".") + 1) . '\|' . (line(".") + 1) . 'm' . (line("."))<CR>
 
 "" ESC
 inoremap jk <Esc>
@@ -390,17 +415,15 @@ noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 "" Disable visualbell
 set noerrorbells visualbell t_vb=
-if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
-endif
+autocmd VimEnter * set visualbell t_vb=
 
 "" Disable danger command
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 
 "" Move visual block
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :move '>+1<CR>gv=gv
+vnoremap K :move '<-2<CR>gv=gv
 
 "" Tab by single press
 nnoremap < <<
