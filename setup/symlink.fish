@@ -50,10 +50,11 @@ if [ "(expr substr (uname -s) 1 5)" = 'Linux' ]
   ### xkeysnail (low-level key bindings)
   sudo mkdir -p /etc/xkeysnail
   ln -s (pwd)/xkeysnail/config.py /etc/xkeysnail
-  # sorry, set /etc/xkeysnail/pw your pw ....
 
   ### gitconfig
-  ln -s (pwd)/.gitconfig $HOME/.gitconfig
+  # ln -s (pwd)/.gitconfig $HOME/.gitconfig
+  ln -s (pwd)/.gitignore_global $HOME/.gitignore_global
+
 
   ### i3wm
   mkdir -p $HOME/.i3
