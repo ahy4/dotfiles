@@ -1,0 +1,6 @@
+---
+- name: install common packages
+  pacman:
+    name:
+      - fish
+      - git

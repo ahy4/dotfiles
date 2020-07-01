@@ -352,7 +352,8 @@ fu! RestoreSess()
 endfunction
 
 autocmd VimLeave * call SaveSess()
-autocmd VimEnter * nested call RestoreSess()
+" autocmd VimEnter * nested call RestoreSess()
+nnoremap <Leader>tr :call RestoreSess()<CR>
 
 set sessionoptions-=options  " Don't save options
 
