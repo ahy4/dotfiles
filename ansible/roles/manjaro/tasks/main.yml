@@ -1,6 +1,21 @@
 ---
-- name: install common packages
+- name: install pacman packages
   pacman:
     name:
       - fish
       - git
+      - tmux
+      - yay
+      - neovim
+      - rofi
+      - python-pip
+      - python-setuptools
+      - python-virtualenv
+      - dnsutils
+      - gcc
+
+- name: install pip packages
+  pip:
+    name:
+      - xkeysnail
+
