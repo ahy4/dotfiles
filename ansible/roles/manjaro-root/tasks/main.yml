@@ -13,9 +13,5 @@
       - python-virtualenv
       - dnsutils
       - gcc
-
-- name: install pip packages
-  pip:
-    name:
-      - xkeysnail
-
+      - nodejs
+      - npm
