@@ -1,0 +1,34 @@
+---
+- name: install neovim by pacman
+  pacman:
+    name:
+      - neovim
+
+- name: install dein
+  block:
+    - name: create dein cache directory
+      file:
+        path: "/home/{{ ansible_user }}/.cache/dein/"
+        state: directory
+
+    - name: fetch dein.vim installer
+      get_url:
+        url: https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
+        dest: /tmp/dein-installer.sh
+        mode: 777
+
+    - name: install dein.vim
+      command: sh /tmp/dein-installer.sh "$HOME/.cache/dein"
+
+  always:
+    - name: delete installer
+      file:
+        state: absent
+        path: /tmp/dein-installer.sh
+      become: yes
+
+- name: install yarn
+  npm:
+    name: yarn
+    global: yes
+  become: yes

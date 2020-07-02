@@ -1,5 +1,10 @@
 ---
 - hosts: localhost
-  become: yes
   roles:
-    - manjaro
+    - { role: "manjaro-root", become: yes }
+    - { role: "manjaro-user" }
+    - { role: "xkeysnail" }
+    - { role: "neovim" }
+    - { role: "i3wm" }
+  vars:
+    - ansible_user: "ahy" #????

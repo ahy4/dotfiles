@@ -1,0 +1,12 @@
+# assume manjaro installed with i3wm edition
+---
+- name: copy i3wm config
+  template:
+    src: config
+    dest: "/home/{{ ansible_user }}/.i3/config"
+    backup: yes
+  register: i3conf
+
+- name: reload i3wm
+  command: "i3-msg reload"
+  when: i3conf.changed

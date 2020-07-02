@@ -1,0 +1,17 @@
+---
+- name: install pacman packages
+  pacman:
+    name:
+      - fish
+      - git
+      - tmux
+      - yay
+      - rofi
+      - python-pip
+      - python-setuptools
+      - python-virtualenv
+      - dnsutils
+      - gcc
+      - nodejs
+      - npm
+      - strace

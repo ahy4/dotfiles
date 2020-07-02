@@ -8,7 +8,7 @@ Description=xkeysnail
 
 [Service]
 KillMode=process
-ExecStart=/usr/bin/xkeysnail %h/.xkeysnail-config.py
+ExecStart=/usr/bin/xkeysnail /etc/xkeysnail/config.py
 ExecStartPre=/usr/bin/xhost +SI:localuser:root
 Type=simple
 Restart=always
