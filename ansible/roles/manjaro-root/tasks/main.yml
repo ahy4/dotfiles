@@ -6,7 +6,6 @@
       - git
       - tmux
       - yay
-      - neovim
       - rofi
       - python-pip
       - python-setuptools

@@ -460,8 +460,3 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-
-### custom
-
-exec --no-startup-id cat /etc/xkeysnail/pw | sudo -S xkeysnail /etc/xkeysnail/config.py &
-
