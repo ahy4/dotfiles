@@ -1,0 +1,34 @@
+---
+- name: install mplus from AUR
+  aur:
+    name:
+      - ttf-mplus
+
+- name: create tmp directory
+  file:
+    state: directory
+    path: /tmp/camingo/
+
+- name: fetch camingo code
+  unarchive:
+    src: "https://www.janfromm.de/_data/downloads/get-camingocode.php"
+    dest: /tmp/camingo/
+    remote_src: yes
+
+- name: create font ttf directory
+  file:
+    state: directory
+    path: /usr/share/fonts/TTF/
+  become: yes
+
+- name: copy cammingo code to font dir
+  copy:
+    src: "{{ item }}"
+    dest: /usr/share/fonts/TTF/
+  with_fileglob:
+    - "/tmp/camingo/*.ttf"
+  become: yes
+
+- name: font cache reload (but not applied to urxvt somehow)
+  command: fc-cache -fv
+  become: yes

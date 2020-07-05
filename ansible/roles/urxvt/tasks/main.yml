@@ -1,0 +1,11 @@
+---
+- name: copy config
+  copy:
+    src: .Xresources
+    dest: "/home/{{ ansible_user }}/.Xresources"
+    backup: yes
+  register: urxvtconf
+
+- name: reload xrdb
+  command: xrdb ~/.Xresources
+  when: urxvtconf.changed

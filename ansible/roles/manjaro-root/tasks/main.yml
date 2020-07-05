@@ -15,3 +15,7 @@
       - nodejs
       - npm
       - strace
+      - jq
+      - ripgrep
+      - zip
+      - unzip

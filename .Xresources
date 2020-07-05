@@ -56,9 +56,9 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
 ! URxvt
-URxvt.font: xft:CamingoCode-14:antialias=true,\
+URxvt.font: xft:CamingoCode-11:antialias=true,\
             xft:Noto\ Sans\ Mono\ CJK\ JP,\
-            xft:Migu\ 1M-14,\
+            xft:Migu\ 1M-11,\
             xft:Droid\ Sans\ Mono\ Slashed\ for\ Powerline
 URxvt*geometry: 80x30
 URxvt*scrollBar: false

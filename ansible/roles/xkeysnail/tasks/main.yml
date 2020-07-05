@@ -1,51 +1,36 @@
+---
 - name: Installing xkeysnail
   pip:
     name: xkeysnail
     executable: pip3
 
-- name: create /etc/xkeysnail directory
-  file: path=/etc/xkeysnail state=directory mode=0755
+- name: create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
   become: yes
+  with_items:
+    - /etc/xkeysnail/
+    - /var/log/xkeysnail/
 
 - name: copy xkeysnail setting
   template: src=config.py dest=/etc/xkeysnail mode=0644
   become: yes
+  register: xkeysnail_conf
 
-# - name: add uinput group
-#   group:
-#     name: uinput
-#   become: yes
-# 
-# - name: add current user in uinput and input group
-#   user:
-#     name: "{{ ansible_user }}"
-#     groups: uinput,input
-#     append: yes
-#   become: yes
-# 
-# - name: add uinput rule in udev
-#   template: src=uinput.rules dest=/etc/udev/rules.d/
-#   become: yes
-# 
-# - name: add input rule in udev
-#   template: src=input.rules dest=/etc/udev/rules.d/
-#   become: yes
-
-  # call it then restart manually...
-  # - name: reload udev rules
-  #   command: udevadm control --reload-rules && udevadm trigger
-  #   become: yes
-
-# - name: create ~/.config/systemd/user/ directory
-  # file: path=~/.config/systemd/user/ state=directory mode=0755
-
-- name: copy xkeysnail.services to /etc/systemd/user/xkeysnail.service
-  template: src=xkeysnail.service.j2 dest=/etc/systemd/user/xkeysnail.service mode=0644
+- name: copy xkeysnail.services to /etc/systemd/system/xkeysnail.service
+  template: src=xkeysnail.service.j2 dest=/etc/systemd/system/xkeysnail.service mode=0644
   become: yes
+  register: xkeysnail_service
 
 - name: enable xkeysnail service
   systemd:
     name: xkeysnail.service
     enabled: yes
-    state: started
-    scope: global
+    state: restarted
+    scope: system
+    enabled: yes
+    daemon_reload: yes
+  when: xkeysnail_conf.changed or xkeysnail_service.changed # TODO: need more fail safe
+  become: yes

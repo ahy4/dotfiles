@@ -6,5 +6,8 @@
     - { role: "xkeysnail" }
     - { role: "neovim" }
     - { role: "i3wm" }
+    - { role: "font" }
+    - { role: "urxvt" }
+    - { role: "fcitx" }
   vars:
     - ansible_user: "ahy" #????

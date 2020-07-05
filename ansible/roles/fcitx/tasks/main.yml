@@ -1,0 +1,19 @@
+---
+- name: install fcitx # https://qiita.com/k_almajiro/items/1c569513cbe705321902
+  pacman:
+    name:
+      - fcitx
+      - fcitx-mozc
+      - fcitx-configtool
+  become: true
+
+- name: copy config files
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    backup: yes
+  with_items:
+    - src: config
+      dest: "/home/{{ ansible_user }}/.config/fcitx/config"
+    - src: profile
+      dest: "/home/{{ ansible_user }}/.config/fcitx/profile"

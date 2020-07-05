@@ -1,20 +1,23 @@
-# 1. Copy this to ~/.config/systemd/user/xkeysnail.service
-# 2. systemctl --user enable xkeysnail
-#
 # Note that you need to set proper $DISPLAY on your environment.
 
 [Unit]
 Description=xkeysnail
+StartLimitBurst=300 # when ten minute fail, give up (2*300 = 6000(sec))
+StartLimitIntervalSec=1500
 
 [Service]
 KillMode=process
 ExecStart=/usr/bin/xkeysnail /etc/xkeysnail/config.py
-ExecStartPre=/usr/bin/xhost +SI:localuser:root
 Type=simple
 Restart=always
+RestartSec=2
+StartLimitInterval=1500
+StartLimitBurst=300
+StandardOutput=append:/var/log/xkeysnail/stdout.log
+StandardError=append:/var/log/xkeysnail/stderr.log
 
 # Update DISPLAY to be the same as `echo $DISPLAY` on your graphical terminal.
 Environment=DISPLAY=:0
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical.target

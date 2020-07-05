@@ -1,7 +1,8 @@
+# depends manjaro-root (xprofile)
+
 - name: install AUR packages
   aur:
     name:
-      - google-chrome
       - ttf-mplus
 
 - name: create config directory
@@ -11,7 +12,6 @@
   with_items:
     - "/home/{{ ansible_user }}/.config/fish/fuctions/"
     - "/home/{{ ansible_user }}/.config/ranger/"
-    - "/home/{{ ansible_user }}/.i3/"
     - "/home/{{ ansible_user }}/.config/rofi/"
 
 - name: hardcopy config files
@@ -23,3 +23,5 @@
     # TODO: put these on roles/templates
     - src:  "../../../../.tmux.conf"
       dest: "/home/{{ ansible_user }}/.tmux.conf"
+    - src:  "../../../../.xprofile"
+      dest: "/home/{{ ansible_user }}/.xprofile"
