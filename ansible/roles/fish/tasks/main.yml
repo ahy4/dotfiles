@@ -1,0 +1,22 @@
+---
+- name: "cp fish files"
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    backup: yes
+  with_items:
+    - src: "../../../../fish/bash-setup.sh"
+      dest: "/home/{{ ansible_user }}/.config/fish/bash-setup.sh"
+    - src: "../../../../fish/config.fish"
+      dest: "/home/{{ ansible_user }}/.config/fish/config.fish"
+    - src: "../../../../fish/fish_variables"
+      dest: "/home/{{ ansible_user }}/.config/fish/fish_variables"
+    - src: "../../../../fish/functions/fish_prompt.fish"
+      dest: "/home/{{ ansible_user }}/.config/fish/functions/fish_prompt.fish"
+    - src: "../../../../fish/functions/fish_user_key_bindings.fish"
+      dest: "/home/{{ ansible_user }}/.config/fish/functions/fish_user_key_bindings.fish"
+    - src: "../../../../.bashrc"
+      dest: "/home/{{ ansible_user }}/.bashrc"
+
+- name: fundle install
+  command: fish -c "type fundle && fundle install"

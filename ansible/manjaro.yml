@@ -9,5 +9,6 @@
     - { role: "font" }
     - { role: "urxvt" }
     - { role: "fcitx" }
+    - { role: "fish" }
   vars:
     - ansible_user: "ahy" #????

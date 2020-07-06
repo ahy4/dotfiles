@@ -25,3 +25,7 @@
       dest: "/home/{{ ansible_user }}/.tmux.conf"
     - src:  "../../../../.xprofile"
       dest: "/home/{{ ansible_user }}/.xprofile"
+    - src: "../../../../.gitignore_global"
+      dest: "/home/{{ ansible_user }}/.gitignore_global"
+    # - src: "../../../../.gitconfig"
+      # dest: "/home/{{ ansible_user }}/.gitconfig"
