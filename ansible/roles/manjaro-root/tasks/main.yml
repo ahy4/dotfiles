@@ -20,3 +20,13 @@
       - zip
       - unzip
       - discord
+      - vlc
+      - obs-studio
+      - xclip
+      - stack
+
+- name: set ntp
+  command: timedatectl set-timezone Asia/Tokyo
+
+- name: set timezone
+  command: timedatectl set-ntp true
