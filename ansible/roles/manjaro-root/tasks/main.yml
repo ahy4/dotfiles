@@ -24,6 +24,7 @@
       - obs-studio
       - xclip
       - stack
+      - feh # image preview
 
 - name: set ntp
   command: timedatectl set-timezone Asia/Tokyo
