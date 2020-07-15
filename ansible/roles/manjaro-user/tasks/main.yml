@@ -4,6 +4,7 @@
   aur:
     name:
       - ttf-mplus
+      - git-now-git
 
 - name: create config directory
   file:

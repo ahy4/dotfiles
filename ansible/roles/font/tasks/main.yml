@@ -3,6 +3,9 @@
   aur:
     name:
       - ttf-mplus
+      - noto-fonts
+      - noto-fonts-emoji
+      - noto-fonts-cjk
 
 - name: create tmp directory
   file:
