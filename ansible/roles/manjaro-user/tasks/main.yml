@@ -30,3 +30,10 @@
       dest: "/home/{{ ansible_user }}/.gitignore_global"
     # - src: "../../../../.gitconfig"
       # dest: "/home/{{ ansible_user }}/.gitconfig"
+
+- name: set default browser to chrome
+  command: "xdg-mime default google-chrome.desktop {{ item }}"
+  with_items:
+    - "text/html"
+    - "x-scheme-handler/http"
+    - "x-scheme-handler/https"
