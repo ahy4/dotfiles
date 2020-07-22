@@ -33,6 +33,7 @@ if dein#load_state('~/.cache/dein')
     \ 'merge': 0,
     \ 'build': './install.sh nightly' })
   " CocInstall coc-json coc-phpls coc-tabnine coc-tsserver coc-tslint-plugin
+  " coc-deno
 
   " Typescript
   call dein#add('leafgarland/typescript-vim')
@@ -185,7 +186,12 @@ nnoremap <Leader>sm :Maps<CR>
 nnoremap <Leader>sw "ayiw:Rg <C-r>a<CR>
 
 "*** coc.nvim ***
+" <Plug>(coc-definition)
 nnoremap <Leader>sd :call CocAction('jumpDefinition', 'tab drop')<CR>zz
+nnoremap <Leader>st :call CocAction('jumpTypeDefinition', 'tab drop')<CR>zz
+"nnoremap <Leader>st <Plug>(coc-type-definition)
+nnoremap <Leader>si <Plug>(coc-implementation)
+"nnoremap <Leader>sr <Plug>(coc-references)
 
 nnoremap <Leader>sl :CocList<CR>
 
