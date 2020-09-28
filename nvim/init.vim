@@ -22,7 +22,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('tpope/vim-fugitive')
 
- " Ranger dependency for neovim
+  " Ranger dependency for neovim
   call dein#add('rbgrouleff/bclose.vim')
 
   " Ranger
@@ -30,8 +30,8 @@ if dein#load_state('~/.cache/dein')
 
   " CoC.nvim
   call dein#add('neoclide/coc.nvim', {
-    \ 'merge': 0,
-    \ 'build': './install.sh nightly' })
+   \ 'merge': 0,
+   \ 'build': './install.sh nightly' })
   " CocInstall coc-json coc-phpls coc-tabnine coc-tsserver coc-tslint-plugin
   " coc-deno
 
@@ -73,6 +73,8 @@ if dein#load_state('~/.cache/dein')
 
   " colorscheme
   call dein#add('arcticicestudio/nord-vim')
+
+  call dein#add('ap/vim-buftabline')
 
   call dein#end()
   call dein#save_state()
@@ -158,14 +160,15 @@ endif
 
 " files
 nnoremap <Leader>sf :FZF<CR>
+nnoremap <Leader>sg :GFiles<CR>
 
 " ripgrep search (needs install)
 nnoremap <Leader>ss :Rg<CR>
 
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+ \ call fzf#vim#grep(
+ \   'rg --column --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+ \   fzf#vim#with_preview(), <bang>0)
 
 " buffer
 nnoremap <Leader>sb :Buffers<CR>
@@ -187,13 +190,14 @@ nnoremap <Leader>sw "ayiw:Rg <C-r>a<CR>
 
 "*** coc.nvim ***
 " <Plug>(coc-definition)
-nnoremap <Leader>sd :call CocAction('jumpDefinition', 'tab drop')<CR>zz
-nnoremap <Leader>st :call CocAction('jumpTypeDefinition', 'tab drop')<CR>zz
+nnoremap <Leader>sd :call CocAction('jumpDefinition')<CR>zz
+nnoremap <Leader>st :call CocAction('jumpTypeDefinition')<CR>zz
 "nnoremap <Leader>st <Plug>(coc-type-definition)
 nnoremap <Leader>si <Plug>(coc-implementation)
 "nnoremap <Leader>sr <Plug>(coc-references)
 
 nnoremap <Leader>sl :CocList<CR>
+nnoremap gl :CocCommand eslint.executeAutofix
 
 "*** Git Gutter***
 
@@ -209,13 +213,13 @@ let g:gitgutter_map_keys = 0
 " disable default keybind
 let g:ranger_map_keys = 0
 
-nnoremap <Leader>fr :tab sp<CR>:Ranger<CR>
+nnoremap <Leader>fr :Ranger<CR>
 
 "*** Vaffle ***
 
 " open current directory
 "nnoremap <Leader>fv :<C-u>execute "Vaffle" . expand('%:p:h')<CR>
-nnoremap <Leader>fv :<C-u>execute "e " . expand('%:p:h')<CR>
+nnoremap <Leader>fv :<C-u>execute "e " . expand('%:p:h')<CR>:call vaffle#toggle_hidden()<CR>
 
 
 " open current working directory
@@ -273,7 +277,7 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " terminal emulation
-nnoremap <Leader>tt :tabnew<CR>:terminal<CR>i
+nnoremap <Leader>tt :terminal<CR>i
 
 " window最小横幅
 set winminwidth=10
@@ -321,7 +325,7 @@ nnoremap <Leader>j <C-w>j
 nnoremap <Leader>k <C-w>k
 
 "" Vimrc 編集用
-nnoremap <Leader>ve :tabe ~/workspace/dotfiles/nvim/init.vim<CR>
+nnoremap <Leader>ve :e ~/workspace/dotfiles/nvim/init.vim<CR>
 nnoremap <Leader>vr :source ~/.config/nvim/init.vim<CR>
 
 "" 折返し行の移動
@@ -330,32 +334,9 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-"" Tabs
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
-nnoremap T :tabnew<CR>
-
 "" Quit
 nnoremap <Leader>qq :q<CR>
 nnoremap <Leader>qa :qall<CR>
-
-"" Session
-fu! SaveSess()
-  execute 'mksession! ' . getcwd() . '/.session.vim'
-endfunction
-
-fu! RestoreSess()
-  if filereadable(getcwd() . '/.session.vim')
-    execute 'source ' . getcwd() . '/.session.vim'
-    if bufexists(1)
-      for l in range(1, bufnr('$'))
-        if bufwinnr(l) == -1
-          exec 'sbuffer ' . l
-        endif
-      endfor
-    endif
-  endif
-endfunction
 
 autocmd VimLeave * call SaveSess()
 " autocmd VimEnter * nested call RestoreSess()
@@ -363,29 +344,43 @@ nnoremap <Leader>tr :call RestoreSess()<CR>
 
 set sessionoptions-=options  " Don't save options
 
-"" Force fxxk
-nnoremap <Leader>fSS :w !sudo -S tee > /dev/null %<CR>
-
 "" Set working directory
 nnoremap <leader>tw :lcd %:p:h<CR>
 
 "" Buffer nav
-noremap <leader>bp :bp<CR>
-noremap <leader>bn :bn<CR>
+nnoremap <Tab> :bn<CR>
+nnoremap <S-Tab> :bp<CR>
 noremap <leader>bd :bd<CR>
 noremap <leader>br :bufdo e<CR>
-noremap <leader>bD :bufdo bd<CR>
+noremap <leader>bD :call DeleteHiddenBuffers()<CR>
+" noremap <leader>bD :bufdo bd<CR>
 noremap <leader>bc :checktime<CR>
 
+function DeleteHiddenBuffers()
+  let tpbl=[]
+  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+    silent execute 'bwipeout' buf
+  endfor
+endfunction
+
 "" Cursor
-nnoremap <C-j> }zz
-nnoremap <C-k> {zz
-vnoremap <C-j> }zz
-vnoremap <C-k> {zz
-nnoremap <C-d> <C-d>zz
-nnoremap <C-u> <C-u>zz
+nnoremap <C-j> }
+nnoremap <C-k> {
+vnoremap <C-j> }
+vnoremap <C-k> {
+nnoremap <C-d> <C-d>
+nnoremap <C-u> <C-u>
 noremap H ^
 noremap L $
+
+"" Move Capital
+" https://stackoverflow.com/questions/7958309/how-do-i-move-to-the-next-capital-letter
+" https://vim.fandom.com/wiki/Moving_through_camel_case_words
+nnoremap gw /\u<CR>:<C-u>nohlsearch<CR>
+nnoremap gb ?\u<CR>:<C-u>nohlsearch<CR>
+vnoremap gw /\u<CR>:<C-U>nohlsearch<CR>v`>
+vnoremap gb ?\u<CR>:<C-U>nohlsearch<CR>v`>o
 
 "" Replace
 nnoremap gS :<C-u>%s///g<Left><Left><Left>
@@ -416,9 +411,6 @@ nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, ''
 
 "" Opens an edit command with the path of the currently edited file filled in
 noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-"" Opens a tab edit command with the path of the currently edited file filled
-noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 "" Disable visualbell
 set noerrorbells visualbell t_vb=
@@ -483,3 +475,27 @@ function! MultiPaste()
 endfunction
 
 nnoremap cp :call MultiPaste()<CR>
+
+
+"*****************************************************************************
+"" Disabled
+"*****************************************************************************
+""" Session
+"fu! SaveSess()
+"  execute 'mksession! ' . getcwd() . '/.session.vim'
+"endfunction
+"
+"fu! RestoreSess()
+"  if filereadable(getcwd() . '/.session.vim')
+"    execute 'source ' . getcwd() . '/.session.vim'
+"    if bufexists(1)
+"      for l in range(1, bufnr('$'))
+"        if bufwinnr(l) == -1
+"          exec 'sbuffer ' . l
+"        endif
+"      endfor
+"    endif
+"  endif
+"endfunction
+
+

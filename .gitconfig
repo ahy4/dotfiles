@@ -20,12 +20,12 @@
   ca = !git diff HEAD --check && git commit --amend --no-edit # commit with amend
   alias = !git config --get-regexp '^alias\\.' | sed 's/alias\\.\\([^ ]*\\) \\(.*\\)/\\1\\\t => \\2/' | sort # show aliases
   s = status # git status
-  n = !git add -A && git now # add and git now
-  t = !tig # open tig
+  n = !git add -A && git now # add and git now t = !tig # open tig
   ps = !echo "git push -u origin `git rev-parse --abbrev-ref HEAD 2> /dev/null`" && git push -u origin `git rev-parse --abbrev-ref HEAD 2> /dev/null` # git push --set-upstream origin {{new-remote-branch}}
   psf = push --force-with-lease
   pl = pull # pull
-  ch = checkout # checkout
+  sw = switch
+  swc = switch -c
   b = branch # branch
   d = diff # diff unstaged
   df = diff --stat # diff file stat
@@ -34,6 +34,7 @@
   st = !git add && git stash # stash anyway
   mf = merge --ff-only
   mn = merge --no-ff
+  cl = clone
 
 [merge]
   ff = false
@@ -59,6 +60,6 @@
 
 [user]
   mail = mrfool38@gmail.com
-  name = ahyahya1
+  name = ahy
   email = mrfool38@gmail.com
 	signingkey = FCC298468445D26F
