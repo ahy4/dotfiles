@@ -25,7 +25,6 @@
       - xclip
       - stack
       - feh # image preview
-      - rescuetime2
 
 - name: set ntp
   command: timedatectl set-timezone Asia/Tokyo

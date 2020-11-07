@@ -5,13 +5,14 @@
     name:
       - ttf-mplus
       - git-now-git
+      - fundle-git
 
 - name: create config directory
   file:
     path: "{{ item }}"
     state: directory
   with_items:
-    - "/home/{{ ansible_user }}/.config/fish/fuctions/"
+    - "/home/{{ ansible_user }}/.config/fish/functions/"
     - "/home/{{ ansible_user }}/.config/ranger/"
     - "/home/{{ ansible_user }}/.config/rofi/"
 

@@ -19,4 +19,4 @@
       dest: "/home/{{ ansible_user }}/.bashrc"
 
 - name: fundle install
-  command: fish -c "type fundle && fundle install"
+  command: fish -c "if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end; fundle install"

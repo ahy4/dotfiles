@@ -3,6 +3,7 @@
   pip:
     name: xkeysnail
     executable: pip3
+  become: yes
 
 - name: create directories
   file:

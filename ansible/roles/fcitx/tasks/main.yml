@@ -7,6 +7,11 @@
       - fcitx-configtool
   become: true
 
+- name: create config directory
+  file:
+    state: directory
+    path: "/home/{{ ansible_user }}/.config/fcitx/"
+
 - name: copy config files
   copy:
     src: "{{ item.src }}"
